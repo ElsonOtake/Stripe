@@ -1,12 +1,10 @@
 <div id="<%= dom_id product %>">
-  <p>
-    <strong>Name:</strong>
-    <%= product %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= product.price %>
-  </p>
-
+  <tr>
+  <td><%= product %></td>
+  <td><%= product.price %></td>
+  <td><%= button_to "Buy now!", checkout_path, params: {id: product.id}, remote: true, class: "button is-link is-light is-small" %></td>
+  <td><%= link_to "Show this product", product, class: "button is-link is-light is-small" %></td>
+  <td><%= link_to "Edit this product", edit_product_path(product), class: "button is-link is-light is-small" %></td>
+  <td><%= link_to "Delete this product", product, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "button is-link is-light is-small" %></td>
+  </tr>
 </div>

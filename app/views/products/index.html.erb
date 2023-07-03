@@ -1,14 +1,23 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Products</h1>
+<h1 class="title has-text-info">Products</h1>
 
+<table class="table">
+  <thead>
+    <th>Name</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </thead>
 <div id="products">
-  <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to "Show this product", product %>
-    </p>
-  <% end %>
+  <tbody>
+    <% @products.each do |product| %>
+      <%= render product %>
+    <% end %>
+  </tbody>
 </div>
+</table>
 
-<%= link_to "New product", new_product_path %>
+<%= link_to "New product", new_product_path, class: "button is-link is-light" %>

@@ -1,7 +1,7 @@
 <div id="<%= dom_id product %>">
   <tr>
   <td><%= product %></td>
-  <td><%= product.price %></td>
+  <td><%= number_to_currency(product.price / 100) %></td>
   <td><%= button_to "Buy now!", checkout_path, params: {id: product.id}, remote: true, class: "button is-link is-light is-small" %></td>
   <td><%= link_to "Show this product", product, class: "button is-link is-light is-small" %></td>
   <td><%= link_to "Edit this product", edit_product_path(product), class: "button is-link is-light is-small" %></td>

@@ -76,3 +76,4 @@ group :test do
 end
 
 gem 'stripe'
+gem "pay", "~> 6.0"

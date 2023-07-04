@@ -32,7 +32,6 @@ development:
   username: <%= ENV['DATABASE_USERNAME'] %>
 
   # The password associated with the postgres role (username).
-  username: <%= ENV['DATABASE_USERNAME'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
 
   # Connect on a TCP socket. Omitted by default since the client uses a

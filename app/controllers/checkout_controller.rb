@@ -34,8 +34,9 @@ class CheckoutController < ApplicationController
   end
 
   def success
-    # @session = Stripe::Checkout::Session.retrieve(params[:session_id])
-    # @line_items = 
+    # Stripe::Checkout::Session.methods
+    @session = Stripe::Checkout::Session.retrieve(params[:session_id])
+    @line_items = Stripe::Checkout::Session.list_line_items(params[:session_id])
     # Lógica para processar a conclusão bem-sucedida do pagamento
   end
 

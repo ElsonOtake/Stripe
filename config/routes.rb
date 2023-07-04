@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :products
   # post "/checkout", to: "checkout#create"
   get "/checkout", to: "checkout#show"

@@ -3,11 +3,9 @@ class CheckoutController < ApplicationController
     current_user.set_payment_processor :stripe
     current_user.payment_processor.customer
     @checkout_session = current_user.payment_processor.checkout(
-      mode: "payment",
-      line_items: "price_1NPpT3AU4NmK8tFWxeNTbeL5",
+      mode: params[:payment_mode],
+      line_items: params[:line_items],
       success_url: checkout_success_url
-      # mode: "subscription",
-      # line_items: "price_1NQBHWAU4NmK8tFWDyWdbP0x"
     )
   end
   
@@ -37,10 +35,8 @@ class CheckoutController < ApplicationController
     # Stripe::Checkout::Session.methods
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @line_items = Stripe::Checkout::Session.list_line_items(params[:session_id])
-    # Lógica para processar a conclusão bem-sucedida do pagamento
   end
 
   def cancel
-    # Lógica para lidar com o cancelamento do pagamento
   end
 end

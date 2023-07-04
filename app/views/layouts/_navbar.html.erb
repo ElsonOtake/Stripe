@@ -9,7 +9,14 @@
 
   <div id="navbarStripe" class="navbar-menu">
     <div class="navbar-start">
-      <%= link_to "Checkout", checkout_path, class: "navbar-item" %>
+      <%= link_to "Payment",
+        checkout_path(payment_mode: "payment", line_items: "price_1NPpT3AU4NmK8tFWxeNTbeL5"),
+        class: "navbar-item"
+      %>
+      <%= link_to "Subscription",
+        checkout_path(payment_mode: "subscription", line_items: "price_1NQBHWAU4NmK8tFWDyWdbP0x"),
+        class: "navbar-item"
+      %>
       <%= link_to "Billing", billing_path, class: "navbar-item" %>
     </div>
     <div class="navbar-end">

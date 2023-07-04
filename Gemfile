@@ -75,5 +75,6 @@ group :test do
   gem "webdrivers"
 end
 
-gem 'stripe'
+gem 'devise'
 gem "pay", "~> 6.0"
+gem 'stripe'

@@ -1,4 +1,14 @@
 class CheckoutController < ApplicationController
+  def show
+    current_user.processor = :stripe
+    current_user.customer
+
+    @checkout_session = current_user.payment_processor.checkout(
+      mode: "payment",
+      line_items: "price_1NPpT3AU4NmK8tFWxeNTbeL5"
+    )
+  end
+  
   def create
     product = Product.find(params[:id])
     @session = Stripe::Checkout::Session.create({

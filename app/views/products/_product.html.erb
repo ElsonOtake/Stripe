@@ -2,7 +2,7 @@
   <tr>
   <td><%= product %></td>
   <td><%= number_to_currency(product.price / 100) %></td>
-  <td><%= button_to "Buy now!", checkout_path, params: {id: product.id}, remote: true, class: "button is-link is-light is-small" %></td>
+  <td><%= link_to "Buy now!", checkout_create_path(id: product.id), class: "button is-link is-light is-small" %></td>
   <td><%= link_to "Show this product", product, class: "button is-link is-light is-small" %></td>
   <td><%= link_to "Edit this product", edit_product_path(product), class: "button is-link is-light is-small" %></td>
   <td><%= link_to "Delete this product", product, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "button is-link is-light is-small" %></td>

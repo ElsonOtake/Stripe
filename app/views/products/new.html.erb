@@ -1,9 +1,9 @@
-<h1>New product</h1>
+<h1 class="title has-text-info">New product</h1>
 
 <%= render "form", product: @product %>
 
 <br>
 
 <div>
-  <%= link_to "Back to products", products_path %>
+  <%= link_to "Back to products", products_path, class: "button is-link is-light" %>
 </div>

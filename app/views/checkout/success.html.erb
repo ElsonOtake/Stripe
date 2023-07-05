@@ -1,13 +1,11 @@
-<div class="container">
-  <h1 class="title has-text-info">Success</h1>
-  <p>You just bought my stuff!</p>
-  <h2 class="subtitle">Your total was $<%= @session.amount_total.to_f / 100 %></h2>
-  <br>
+<h1 class="title has-text-info">Transaction succeded!</h1>
+<h2 class="subtitle">Your total was <%= number_to_currency(@session.amount_total.to_f / 100) %></h2>
+<br>
+<ul>
   <% @line_items.each do |item| %>
-    <h3 class="has-text-info"><%= item.description %></h3>
-    <br>
-    <p>$<%= item.price.unit_amount.to_f / 100 %></p>
+    <li>Product: <span class="has-text-info"><%= item.description %></span></li>
+    <li>Price: <span class="has-text-info"><%= number_to_currency(item.price.unit_amount.to_f / 100) %></span></li>
     <%# product = Stripe::Product.retrieve(item.price.product) %>
     <%#= image_tag(product.images.first, width: 300) %>
   <% end %>
-</div>
+</ul>

@@ -10,16 +10,16 @@ class CheckoutController < ApplicationController
   end
   
   def create
-    product = Product.find(params[:id])
+    @product = Product.find(params[:id])
     @checkout_session = current_user.payment_processor.checkout(
       mode: 'payment',
       line_items: [{
         price_data: {
           currency: 'usd',
           product_data: {
-            name: product.name,
+            name: @product.name,
           },
-          unit_amount: product.price,
+          unit_amount: @product.price,
         },
         quantity: 1,
       }],

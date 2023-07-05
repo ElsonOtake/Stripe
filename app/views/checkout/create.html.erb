@@ -1,3 +1,8 @@
-<h1>Product Checkout</h1>
-
+<h1 class="title has-text-info">Product Checkout</h1>
+<ul>
+  <li>Product: <%= @product.name %></li>
+  <li>Price: <%= number_to_currency(@product.price.to_f / 100) %></li>
+</ul>
+<h2 class="subtitle">Your total is <%= number_to_currency(@product.price.to_f / 100) %></h2>
+<br>
 <%= render partial: "pay/stripe/checkout_button", locals: { session: @checkout_session, title: "Buy the product now" } %>

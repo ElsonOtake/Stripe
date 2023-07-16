@@ -23,8 +23,10 @@
   <div id="navbarStripe" class="navbar-menu">
     <div class="navbar-start">
       <% if user_signed_in? %>
-        <%= link_to "Payment",
-          checkout_path(payment_mode: "payment", line_items: "price_1NPpT3AU4NmK8tFWxeNTbeL5"),
+        <%= link_to "Stripe products",
+          stripe_products_index_path,
+          #Ex:- :default =>''
+          # checkout_path(payment_mode: "payment", line_items: "price_1NPpT3AU4NmK8tFWxeNTbeL5"),
           class: "navbar-item"
         %>
         <%= link_to "Subscription",

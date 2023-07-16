@@ -1,10 +1,31 @@
 <h1 class="title has-text-warning-dark">Products hosted on Stripe</h1>
 
-<ul>
   <% @products.each do |product| %>
-    <li>Name: <%= product.name   %></li>
-    <li>Description: <%= product.description %></li>
-    <li>Default price: <%= product.default_price %></li>
-    <li>Images: <%= image_tag product.images.first %></li>
+    <% if product.active %>
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <%= image_tag product.images.first %>
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4"><%= product.name   %></p>
+              <p class="subtitle is-6"><%= number_to_currency(product.default_price.unit_amount.to_f / 100) %></p>
+              <%= link_to "Buy now!",
+                checkout_path(payment_mode: "payment", line_items: product.default_price.id),
+                class: "button is-small is-primary"
+              %>
+            </div>
+          </div>
+
+          <div class="content">
+            <%= product.description %>
+            <br>
+            <p class="help"><%= Time.at(product.created) %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
   <% end %>
-</ul>

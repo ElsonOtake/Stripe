@@ -2,6 +2,8 @@ class CheckoutController < ApplicationController
   def show
     # current_user.set_payment_processor :stripe
     # current_user.payment_processor.customer
+    @price = Stripe::Price.retrieve(params[:line_items])
+    @product = Stripe::Product.retrieve(@price.product)
     @checkout_session = current_user.payment_processor.checkout(
       mode: params[:payment_mode],
       line_items: params[:line_items],

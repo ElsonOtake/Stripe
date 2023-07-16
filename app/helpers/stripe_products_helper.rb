@@ -1,0 +1,2 @@
+module StripeProductsHelper
+end

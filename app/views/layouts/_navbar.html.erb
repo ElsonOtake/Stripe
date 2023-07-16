@@ -5,7 +5,15 @@
         <%= image_tag "EAO.png"  %>
       </figure>
     <% end %>
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarStripe">
+    <a
+      role="button"
+      class="navbar-burger"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbarStripe"
+      data-controller="stimulus""
+      data-action="stimulus#mobile_menu"
+    >
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -25,17 +33,13 @@
       <%= link_to "Billing", billing_path, class: "navbar-item" %>
     </div>
     <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <% if user_signed_in? %>
-            <%= link_to "Edit profile", edit_user_registration_path, class: "button is-outlined" %>
-            <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "button is-outlined" %>
-          <% else %>
-            <%= link_to "Sign up", new_user_registration_path, class: "button is-outlined" %>
-            <%= link_to "Log in", new_user_session_path, class: "button is-outlined" %>
-          <% end %>
-        </div>
-      </div>
+      <% if user_signed_in? %>
+        <%= link_to "Edit profile", edit_user_registration_path, class: "navbar-item" %>
+        <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "navbar-item" %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path, class: "navbar-item" %>
+        <%= link_to "Log in", new_user_session_path, class: "navbar-item" %>
+      <% end %>
     </div>
   </div>
 </nav>

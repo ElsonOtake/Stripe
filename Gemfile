@@ -79,3 +79,4 @@ end
 gem 'devise'
 gem "pay", "~> 6.0"
 gem 'stripe'
+gem 'money-rails', '~> 1.12'

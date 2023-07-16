@@ -1,7 +1,10 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  connect() {
-    this.element.textContent = "Hello World!"
+  mobile_menu() {
+    const burger = document.querySelector('.navbar-burger');
+    const menu = document.querySelector('#navbarStripe');
+    burger.classList.toggle('is-active');
+    menu.classList.toggle('is-active');
   }
 }

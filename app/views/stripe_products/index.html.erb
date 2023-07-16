@@ -1,7 +1,7 @@
 <h1 class="title has-text-warning-dark">Products hosted on Stripe</h1>
 
   <% @products.each do |product| %>
-    <% if product.active %>
+    <% if product.active && product.default_price.type == "one_time" %>
       <div class="card">
         <div class="card-image">
           <figure class="image is-4by3">

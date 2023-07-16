@@ -28,14 +28,15 @@
           class: "navbar-item"
         %>
         <%= link_to "Stripe products",
-          stripe_products_index_path,
+          stripe_products_path,
           class: "navbar-item"
         %>
-        <%= link_to "Subscription",
-          checkout_path(payment_mode: "subscription", line_items: "price_1NQBHWAU4NmK8tFWDyWdbP0x"),
+        <%= link_to "Stripe Subscription",
+          stripe_subscriptions_path,
+          # checkout_path(payment_mode: "subscription", line_items: "price_1NQBHWAU4NmK8tFWDyWdbP0x"),
           class: "navbar-item"
         %>
-        <%= link_to "Billing Portal",
+        <%= link_to "Stripe Billing Portal",
           current_user.payment_processor.billing_portal.url,
           class: "navbar-item" unless current_user.payment_processor.nil?
         %>

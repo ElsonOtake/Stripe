@@ -1,2 +1,36 @@
-<h1>StripeSubscriptions#index</h1>
-<p>Find me in app/views/stripe_subscriptions/index.html.erb</p>
+<h1 class="title has-text-warning-dark">Subscriptions hosted on Stripe</h1>
+
+  <% @products.each do |product| %>
+    <% if product.active && product.default_price.type != "one_time" %>
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <%= image_tag product.images.first %>
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4"><%= product.name   %></p>
+              <p class="subtitle is-6">
+                <span><%= number_to_currency(product.default_price.unit_amount.to_f / 100) %></span>
+                <span> / </span>
+                <span><%= product.default_price.recurring.interval %></span>
+              </p>
+              <%= link_to "Subscribe now!",
+                checkout_path(payment_mode: "subscription", line_items: product.default_price.id),
+                class: "button is-small is-primary"
+              %>
+            </div>
+          </div>
+
+          <div class="content">
+            <%= product.description %>
+            <br>
+            <p class="help"><%= Time.at(product.created) %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+

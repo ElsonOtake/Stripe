@@ -83,6 +83,4 @@ test:
 #
 production:
   <<: *default
-  database: Stripe_production
-  username: Stripe
-  password: <%= ENV["STRIPE_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>

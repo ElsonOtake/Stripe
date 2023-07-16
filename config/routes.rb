@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :products
   get "/checkout", to: "checkout#show"
+  get "/checkout/index", to: "checkout#index"
   get "/checkout/create", to: "checkout#create"
   get "/checkout/success", to: "checkout#success"
   get "/checkout/cancel", to: "checkout#cancel"

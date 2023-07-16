@@ -1,4 +1,6 @@
 class CheckoutController < ApplicationController
+  def index;end
+  
   def show
     @price = Stripe::Price.retrieve(params[:line_items])
     @product = Stripe::Product.retrieve(@price.product)

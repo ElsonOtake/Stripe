@@ -32,6 +32,9 @@ class CheckoutController < ApplicationController
     # Stripe::Checkout::Session.methods
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @line_items = Stripe::Checkout::Session.list_line_items(params[:session_id])
+    payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
+    @charge = Stripe::Charge.retrieve(payment_intent.latest_charge)
+    @payment_method = Stripe::PaymentMethod.retrieve(payment_intent.payment_method)
   end
 
   def cancel

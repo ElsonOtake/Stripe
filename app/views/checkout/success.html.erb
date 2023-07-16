@@ -5,7 +5,55 @@
   <% @line_items.each do |item| %>
     <li>Product: <span class="has-text-info"><%= item.description %></span></li>
     <li>Price: <span class="has-text-info"><%= number_to_currency(item.price.unit_amount.to_f / 100) %></span></li>
+    <li>amount_subtotal: <span class="has-text-info"><%= number_to_currency(item.amount_subtotal.to_f / 100) %></span></li>
+    <li>amount_total: <span class="has-text-info"><%= number_to_currency(item.amount_total.to_f / 100) %></span></li>
+    <li>currency: <span class="has-text-info"><%= item.currency %></span></li>
+    <li>price.billing_scheme: <span class="has-text-info"><%= item.price.billing_scheme %></span></li>
+    <li>price.currency: <span class="has-text-info"><%= item.price.currency %></span></li>
+    <li>price.livemode: <span class="has-text-info"><%= item.price.livemode %></span></li>
+    <li>price.nickname: <span class="has-text-info"><%= item.price.nickname %></span></li>
+    <li>price.product: <span class="has-text-info"><%= item.price.product %></span></li>
+    <li>price.recurring.interval: <span class="has-text-info"><%= item.price.recurring&.interval %></span></li>
+    <li>price.recurring.interval_count: <span class="has-text-info"><%= item.price.recurring&.interval_count %></span></li>
+    <li>quantity: <span class="has-text-info"><%= item.quantity %></span></li>
     <%# product = Stripe::Product.retrieve(item.price.product) %>
     <%#= image_tag(product.images.first, width: 300) %>
   <% end %>
+</ul>
+<br>
+<p>Charge info</p>
+<ul>
+  <li>Receipt: <span class="has-text-danger"><%= @charge.receipt_url %></span></li>
+  <li>Status: <span class="has-text-danger"><%= @charge.status %></span></li>
+  <li>payment_method_details.card.brand: <span class="has-text-danger"><%= @charge.payment_method_details.card.brand %></span></li>
+  <li>payment_method_details.card.exp_month: <span class="has-text-danger"><%= @charge.payment_method_details.card.exp_month %></span></li>
+  <li>payment_method_details.card.exp_year: <span class="has-text-danger"><%= @charge.payment_method_details.card.exp_year %></span></li>
+  <li>payment_method_details.card.last4: <span class="has-text-danger"><%= @charge.payment_method_details.card.last4 %></span></li>
+  <li>payment_method_details.type: <span class="has-text-danger"><%= @charge.payment_method_details.type %></span></li>
+  <li>paid: <span class="has-text-danger"><%= @charge.paid %></span></li>
+  <li>outcome.network_status: <span class="has-text-danger"><%= @charge.outcome.network_status %></span></li>
+  <li>outcome.seller_message: <span class="has-text-danger"><%= @charge.outcome.seller_message %></span></li>
+  <li>outcome.type: <span class="has-text-danger"><%= @charge.outcome.type %></span></li>
+  <li>livemode: <span class="has-text-danger"><%= @charge.livemode %></span></li>
+</ul>
+<br>
+<p>Other session info</p>
+<br>
+<ul>
+  <li>amount_subtotal: <span class="has-text-primary"><%= number_to_currency(@session.amount_subtotal.to_f / 100) %></span></li>
+  <li>currency: <span class="has-text-primary"><%= @session.currency %></span></li>
+  <li>customer: <span class="has-text-primary"><%= @session.customer %></span></li>
+  <li>customer_email: <span class="has-text-primary"><%= @session.customer_email %></span></li>
+  <li>invoice: <span class="has-text-primary"><%= @session.invoice %></span></li>
+  <li>livemode: <span class="has-text-primary"><%= @session.livemode %></span></li>
+  <li>mode: <span class="has-text-primary"><%= @session.mode %></span></li>
+  <li>payment_method_collection: <span class="has-text-primary"><%= @session.payment_method_collection %></span></li>
+  <li>payment_method_types: <span class="has-text-primary"><%= @session.payment_method_types %></span></li>
+  <li>payment_status: <span class="has-text-primary"><%= @session.payment_status %></span></li>
+  <li>status: <span class="has-text-primary"><%= @session.status %></span></li>
+  <li>subscription: <span class="has-text-primary"><%= @session.subscription %></span></li>
+  <li>customer_details.address.country: <span class="has-text-primary"><%= @session.customer_details.address.country %></span></li>
+  <li>customer_details.email: <span class="has-text-primary"><%= @session.customer_details.email %></span></li>
+  <li>customer_details.name: <span class="has-text-primary"><%= @session.customer_details.name %></span></li>
+  <li>customer_details.phone: <span class="has-text-primary"><%= @session.customer_details.phone %></span></li>
 </ul>

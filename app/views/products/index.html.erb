@@ -1,20 +1,22 @@
 <h1 class="title has-text-info">Products</h1>
 
-<table class="table">
-  <thead>
-    <th>Name</th>
-    <th>Price</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </thead>
-<div id="products">
-  <tbody>
-    <% @products.each do |product| %>
-      <%= render product %>
-    <% end %>
-  </tbody>
+<div class="table-container">
+  <table class="table is-fullwidth">
+    <thead>
+      <th>Name</th>
+      <th>Price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </thead>
+  <div id="products">
+    <tbody>
+      <% @products.each do |product| %>
+        <%= render product %>
+      <% end %>
+    </tbody>
+  </div>
+  </table>
 </div>
-</table>
 
-<%= link_to "New product", new_product_path, class: "button is-link is-light" %>
+<%= link_to "New product", new_product_path, class: "button is-primary" %>

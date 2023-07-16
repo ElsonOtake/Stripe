@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'stripe_subscriptions/index'
   devise_for :users
   resources :products
   get "/checkout", to: "checkout#show"

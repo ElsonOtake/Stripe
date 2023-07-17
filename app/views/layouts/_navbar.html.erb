@@ -31,12 +31,12 @@
           stripe_products_path,
           class: "navbar-item"
         %>
-        <%= link_to "Stripe Subscription",
+        <%#= link_to "Stripe Subscription",
           stripe_subscriptions_path,
           class: "navbar-item"
         %>
         <%#= link_to "Stripe Billing Portal",
-          url_for(current_user.payment_processor.billing_portal.url),
+          current_user.payment_processor.billing_portal.url,
           class: "navbar-item" unless current_user.payment_processor.nil? 
         %>
         <%= link_to "Test Cards",

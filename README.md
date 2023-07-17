@@ -61,7 +61,8 @@ This repository handles products hosted on Stripe. It performs payments, subscri
 
 ### Key Features <a name="key-features"></a>
 
-- **Checkout Session**
+- **Checkout for Stripe products**
+- **Checkout for local database products**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -69,7 +70,7 @@ This repository handles products hosted on Stripe. It performs payments, subscri
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link]()
+- [Live Demo Link](https://elsonotake-stripe.onrender.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -151,7 +152,9 @@ Open `http://localhost:3000/` on your browser.
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Shopping cart implementation**
+- [ ] **Subscription**
+- [ ] **Billing portal**
+- [ ] **Shopping cart**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

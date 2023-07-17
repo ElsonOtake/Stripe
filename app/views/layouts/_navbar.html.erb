@@ -35,10 +35,12 @@
           stripe_subscriptions_path,
           class: "navbar-item"
         %>
-        <%= link_to "Stripe Billing Portal",
-          current_user.payment_processor.billing_portal.url,
-          class: "navbar-item" unless current_user.payment_processor.nil?
-        %>
+        <% unless current_user.payment_processor.nil? %>
+          <%= link_to "Stripe Billing Portal",
+            current_user.payment_processor.billing_portal.url,
+            class: "navbar-item"
+          %>
+        <% end %>
         <%= link_to "Test Cards",
           checkout_index_path,
           class: "navbar-item"

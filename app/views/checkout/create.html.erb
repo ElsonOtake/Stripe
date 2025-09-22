@@ -10,9 +10,10 @@
     </div>
 
     <div class="content">
-      <%= render partial: "pay/stripe/checkout_button",
-        locals: { session: @checkout_session, title: "Buy the product now" }
-      %>
+      <%= button_to "Buy the product now", @checkout_session.url,
+          method: :get,
+          data: { turbo: false },
+          class: "button is-primary is-fullwidth" %>
     </div>
   </div>
 </div>

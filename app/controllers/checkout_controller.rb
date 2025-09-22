@@ -4,17 +4,30 @@ class CheckoutController < ApplicationController
   def show
     @price = Stripe::Price.retrieve(params[:line_items])
     @product = Stripe::Product.retrieve(@price.product)
-    @checkout_session = current_user.payment_processor.checkout(
+
+    # Create checkout session (Stripe will create customer if needed)
+    session_params = {
       mode: params[:payment_mode],
-      line_items: params[:line_items],
+      line_items: [{ price: params[:line_items], quantity: 1 }],
       success_url: checkout_success_url,
       cancel_url: checkout_cancel_url,
-    )
+    }
+
+    # Add customer if exists
+    if current_user.payment_processor.processor_id.present?
+      session_params[:customer] = current_user.payment_processor.processor_id
+    else
+      session_params[:customer_email] = current_user.email
+    end
+
+    @checkout_session = Stripe::Checkout::Session.create(session_params)
   end
   
   def create
     @product = Product.find(params[:id])
-    @checkout_session = current_user.payment_processor.checkout(
+
+    # Create checkout session (Stripe will create customer if needed)
+    session_params = {
       mode: 'payment',
       line_items: [{
         price_data: {
@@ -28,7 +41,16 @@ class CheckoutController < ApplicationController
       }],
       success_url: checkout_success_url,
       cancel_url: checkout_cancel_url,
-    )
+    }
+
+    # Add customer if exists
+    if current_user.payment_processor.processor_id.present?
+      session_params[:customer] = current_user.payment_processor.processor_id
+    else
+      session_params[:customer_email] = current_user.email
+    end
+
+    @checkout_session = Stripe::Checkout::Session.create(session_params)
   end
 
   def success
@@ -39,5 +61,15 @@ class CheckoutController < ApplicationController
   end
 
   def cancel
+  end
+
+  private
+
+  def checkout_success_url
+    "#{request.base_url}/checkout/success?session_id={CHECKOUT_SESSION_ID}"
+  end
+
+  def checkout_cancel_url
+    "#{request.base_url}/checkout/cancel"
   end
 end

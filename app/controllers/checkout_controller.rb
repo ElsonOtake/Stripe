@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CheckoutController < ApplicationController
-  def index;end
-  
+  def index; end
+
   def show
     @price = Stripe::Price.retrieve(params[:line_items])
     @product = Stripe::Product.retrieve(@price.product)
@@ -10,7 +12,7 @@ class CheckoutController < ApplicationController
       mode: params[:payment_mode],
       line_items: [{ price: params[:line_items], quantity: 1 }],
       success_url: checkout_success_url,
-      cancel_url: checkout_cancel_url,
+      cancel_url: checkout_cancel_url
     }
 
     # Add customer if exists
@@ -22,7 +24,7 @@ class CheckoutController < ApplicationController
 
     @checkout_session = Stripe::Checkout::Session.create(session_params)
   end
-  
+
   def create
     @product = Product.find(params[:id])
 
@@ -33,14 +35,14 @@ class CheckoutController < ApplicationController
         price_data: {
           currency: 'usd',
           product_data: {
-            name: @product.name,
+            name: @product.name
           },
-          unit_amount: @product.price,
+          unit_amount: @product.price
         },
-        quantity: 1,
+        quantity: 1
       }],
       success_url: checkout_success_url,
-      cancel_url: checkout_cancel_url,
+      cancel_url: checkout_cancel_url
     }
 
     # Add customer if exists
@@ -60,8 +62,7 @@ class CheckoutController < ApplicationController
     @charge = Stripe::Charge.retrieve(payment_intent.latest_charge)
   end
 
-  def cancel
-  end
+  def cancel; end
 
   private
 

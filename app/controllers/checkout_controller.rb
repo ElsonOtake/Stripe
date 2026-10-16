@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CheckoutController < ApplicationController
   def index; end
 
@@ -32,13 +30,7 @@ class CheckoutController < ApplicationController
     session_params = {
       mode: 'payment',
       line_items: [{
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: @product.name
-          },
-          unit_amount: @product.price
-        },
+        price_data: { currency: 'usd', product_data: { name: @product.name }, unit_amount: @product.price },
         quantity: 1
       }],
       success_url: checkout_success_url,

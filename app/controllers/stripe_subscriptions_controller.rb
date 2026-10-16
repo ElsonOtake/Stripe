@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class StripeSubscriptionsController < ApplicationController
   def index
     @products = Stripe::Product.list(expand: ['data.default_price'])

@@ -1,0 +1,20 @@
+docker-compose.yml
+  h_da978aeed56e72 1-30
+Dockerfile
+  h_da978aeed56e72 1-32
+Gemfile.lock
+  h_da978aeed56e72 171-172,182,296
+yarn.lock
+  h_da978aeed56e72 5-24,30-134
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e77914635b80c4a31a9c941aecd4af202b2d004e",
+  "prompts": {},
+  "humans": {
+    "h_da978aeed56e72": {
+      "author": "Elson Otake <elsonotake@yahoo.com.br>"
+    }
+  }
+}

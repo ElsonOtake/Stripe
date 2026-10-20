@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails assets:precompile && bundle exec rails db:prepare && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgres://postgres:password@db:5432/stripe_development
+      - RAILS_SERVE_STATIC_FILES=true
+      # Add your Stripe test keys here if needed for full functionality:
+      # - STRIPE_PRIVATE_KEY=your_private_key
+      # - STRIPE_PUBLIC_KEY=your_public_key
+      # - STRIPE_SIGNING_SECRET=your_signing_secret
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
